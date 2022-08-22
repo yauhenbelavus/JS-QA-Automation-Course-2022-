@@ -1,1 +1,1 @@
-# JS-QA-Automation-Course-HW-s-2022-
+QA Automation Course homeworks
