@@ -1,0 +1,13 @@
+export const baseUrl = "https://rumbaba.nl/";
+export const defaultWaitingTime = 2000;
+export const supportFolder  = "./hw-24/cypress/support/";
+export const productsPageUrl = `${baseUrl}collections/all`;
+export const loginPageUrl = `${baseUrl}account/login`;
+export const email = 'yahenbelavus@gmail.com';
+export const imNotRobotPageUrl = `${baseUrl}challenge`;
+export const costaRica = 'Costa Rica Las Lajas';
+export const costaRicaPageUrl = `${baseUrl}products/costa-rica-las-lajas`;
+export const checkoutsPage = `${baseUrl}checkouts/`;    
+export const shoppingCartUrl = `${baseUrl}cart`;
+export const password = 'ln10ucn3s';
+export const accountPage =`${baseUrl}account`;

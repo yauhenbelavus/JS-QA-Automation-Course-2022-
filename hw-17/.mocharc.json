@@ -1,0 +1,6 @@
+{
+    "extention": ["ts"],
+    "spec": ["**/hw-17/mocha-test/calculator_mocha.spec.ts"],
+    "require": ["ts-node/register"],
+    "reporter": ["mocha-allure-reporter"]
+}

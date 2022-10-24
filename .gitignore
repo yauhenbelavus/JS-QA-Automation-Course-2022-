@@ -1,0 +1,13 @@
+node_modules/
+.vscode/
+.nyc_output/
+allure-report/
+allure-results/
+coverage/
+*.exe
+/test-results/
+/playwright-report/
+/playwright/.cache/
+**/*assets
+**/*screenshots
+**/log

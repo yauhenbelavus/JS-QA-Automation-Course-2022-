@@ -1,0 +1,6 @@
+{
+    "extention": ["ts"],
+    "spec": ["**/hw-21/tests/*.spec.ts"],
+    "require": ["ts-node/register"],
+    "timeout": 100000
+}
