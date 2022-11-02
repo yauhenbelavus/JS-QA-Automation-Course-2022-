@@ -13,7 +13,7 @@ export const newPostParam = {
     id: 3,
     title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
     body: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
-    time: "16.10.2022"
+    date: "16.10.2022"
 }
 
 export const newCommentsText = {

@@ -5,3 +5,4 @@ allure-results/
 /test-results/
 **/*assets
 **/*screenshots
+**/*downloads

@@ -1,6 +1,5 @@
 import { shoppingCartUrl } from "../support/constans";
 import { BasePage } from "./basePage";
-import { Element } from "../support/elements";
 
 export class ShoppingCartPage extends BasePage {
     constructor() {
@@ -9,33 +8,33 @@ export class ShoppingCartPage extends BasePage {
   }
 
 get сartRemoveButton() {
-    return new Element('#Remove-1');
+    return '#Remove-1';
   }
   
 get increaseQuantityButton() {
-    return new Element('#CartItem-1 > td.cart-item__quantity > quantity-input > button:nth-child(3)');
+    return '#CartItem-1 > td.cart-item__quantity > quantity-input > button:nth-child(3)';
   }
 
 get quantityElement() {
-    return new Element('#Quantity-1');
+    return '#Quantity-1';
   }
 
 get subtotalElement() {
-    return new Element('#main-cart-footer > div > div > div > div.js-contents > div.totals > p');
+    return '#main-cart-footer > div > div > div > div.js-contents > div.totals > p';
   }
 
 public getshoppingCartItem(index: number) {
-    return new Element(`#CartItem-${index} > td.cart-item__details > a`)
-}
+    return `#CartItem-${index} > td.cart-item__details > a`;
+  }
 
 public checkForCartRemoveButtonIsVisible() {
-    this.сartRemoveButton.waitForElementVisible();
+    this.waitForElementVisible(this.сartRemoveButton);
   }
 
 public getCartUniqueProductsCount(itemsCount: number): number {
     let count = 0;
     for(let index = 1; index <= itemsCount; index++) {
-       this.getshoppingCartItem(index).waitForElementVisible();
+       this.waitForElementVisible(this.getshoppingCartItem(index));
        count++
     }
     return count;
@@ -44,18 +43,18 @@ public getCartUniqueProductsCount(itemsCount: number): number {
 public getClicksNumber(clicksNumber: number): number {
    let count = 0;
    for(let index = 1; index <= clicksNumber; index++) {
-     this.increaseQuantityButton.click();
+     cy.get(this.increaseQuantityButton).click();
      count++
     }
     return count;
   }
 
 public checkForQuantityElementValue(attributeValue: number | string, attributeName: string) {
-     this.quantityElement.waitForElementVisible();
-     this.quantityElement.checkForElementAttributeValue(attributeValue, attributeName);
+     this.waitForElementVisible( this.quantityElement);
+     this.checkForElementAttributeValue(this.quantityElement, attributeValue, attributeName);
   }
 
 public checkForSubtotalValue(subtotalValue: string) {
-     this.subtotalElement.checkElementHasText(subtotalValue);
+     this.checkElementHasText( this.subtotalElement, subtotalValue);
   }
 }

@@ -15,18 +15,18 @@ describe('Rum Baba "Product Page" testing', () => {
     });
     
     it('Should display clickable "Add to cart button" on "Product" page:', () => {
-        productPage.addToCartButton.waitForElementEnable();
+        productPage.waitForElementEnable(productPage.addToCartButton);
     });
 
     it('Should display actual number of added products inside "View my cart" button', () => {
         let clicksNumberQuantity = productPage.getClicksNumber(timesToClick);
         productPage.clickOnAddToCartButton();
-        productPage.viewMyCartButton.waitForElementVisible();
+        productPage.waitForElementVisible(productPage.viewMyCartButton);
         productPage.checkForItemsNumberInCartPreview(clicksNumberQuantity + 1);
     });
 
     it('Should display message "Item added to your cart" on "Shopping cart" pop-up after product was added in cart', () => {
         productPage.clickOnAddToCartButton();
-        productPage.productWasAddedNotificationElement.waitForElementVisible();
+        productPage.waitForElementVisible(productPage.productWasAddedNotificationElement);
     });
 });

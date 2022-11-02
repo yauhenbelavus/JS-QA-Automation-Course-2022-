@@ -6,7 +6,7 @@
   "scripts": {
     "unit:test": "mocha --config ./exam-unit/.mocharc.json",
     "api:test": "mocha --config ./exam-api/.mocharc.json",
-    "ui:run": "cypress run --browser chrome --headed --config-file=./exam-ui/cypress.config.ts",
+    "ui:run": "cypress open --config-file=./exam-ui/cypress.config.ts",
     "ui:report": "allure generate ./exam-ui/support/assets/allure-results --clean -o ./exam-ui/support/assets/allure-report && allure open ./exam-ui/support/assets/allure-report"
   },
   "author": "evgenij",

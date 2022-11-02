@@ -18,7 +18,7 @@ describe('Rum Baba "Shopping Cart" testing', () => {
         homePage.header.clickOnAllCoffeeButton();
     });
 
-    describe('Part 1', () => {
+    describe('Shopping Cart Action', () => {
         beforeEach('Visititing "Shopping Cart" Page', () => {
             productPage.clickOnProductPageLink(PRODUCTS_LOCATORS.COSTARICA);
             productPage.clickOnAddToCartButton();
@@ -32,24 +32,24 @@ describe('Rum Baba "Shopping Cart" testing', () => {
         it(`Should display correct number of product after clicking "Increase quantity" button ${timesToClick} times`, () => {
             let clicksNumber = shoppingCartPage.getClicksNumber(timesToClick);
             let expectedValue = String(clicksNumber + 1);
-            shoppingCartPage.quantityElement.waitForTime(1000);
+            shoppingCartPage.waitForTime(shoppingCartPage.quantityElement, 1000);
             shoppingCartPage.checkForQuantityElementValue(expectedValue, "value");
         });
 
         it('Should always display subtotal element in "Shopping Cart" with added products', () => {
-            shoppingCartPage.subtotalElement.waitForElementVisible();
+            shoppingCartPage.waitForElementVisible(shoppingCartPage.subtotalElement);
         });
 
         it('Should save the actual items and subtotal in "Shopping Cart" after the page being refreshed', () => {
-            shoppingCartPage.subtotalElement.waitForElementVisible();
+            shoppingCartPage.waitForElementVisible(shoppingCartPage.subtotalElement);
             shoppingCartPage.checkForSubtotalValue(costaRicaSubtotalValue);
             shoppingCartPage.refreshPage();
-            shoppingCartPage.subtotalElement.waitForElementVisible();
+            shoppingCartPage.waitForElementVisible(shoppingCartPage.subtotalElement);
             shoppingCartPage.checkForSubtotalValue(costaRicaSubtotalValue);
         });
     });
 
-    describe('Part 2', () => {
+    describe('Shopping Cart Products', () => {
         it('Should display all added unique products in "Shopping Cart"', () => {
             let addedProductsNumber = productPage.getAddedToCartUniqueProductsNumber(PRODUCTS_LOCATORS);
             productPage.header.clickOnCartButton();

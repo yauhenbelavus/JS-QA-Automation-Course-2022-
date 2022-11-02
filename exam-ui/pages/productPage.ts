@@ -1,4 +1,3 @@
-import { Element } from "../support/elements";
 import { BasePage } from "./basePage";
 import { productsPageUrl } from "../support/constans";
 import { PRODUCTS_LOCATORS } from "exam-ui/support/types";
@@ -13,51 +12,51 @@ export class ProductPage extends BasePage {
   }
 
 get increaseQuantityButton() {
-    return new Element('#ProductInfo-template--14148891377801__main > div.product-form__input.product-form__quantity > quantity-input > button:nth-child(3)');
+    return '#ProductInfo-template--14148891377801__main > div.product-form__input.product-form__quantity > quantity-input > button:nth-child(3)';
   }
 
 get productWasAddedNotificationElement() {
-    return new Element('#cart-notification > div.cart-notification__header');
+    return '#cart-notification > div.cart-notification__header';
   }
 
 get checkoutButton() {
-  return new Element('#cart > button');
+  return '#cart > button';
   }
 
 get addToCartButton() {
-    return new Element('#product-form-template--14148891377801__main > div > button');
+    return '#product-form-template--14148891377801__main > div > button';
   }
 
 get viewMyCartButton() {
-    return new Element('#cart-notification-button');
+    return '#cart-notification-button';
   } 
 
 public getProductPageLink(productLocator: PRODUCTS_LOCATORS) {
-    return new Element(productLocator);
+    return (productLocator);
   }
 
 public getProductLink(productLink: string) {
-    return new Element(productLink);
+    return (productLink);
   }
 
 public clickOnAddToCartButton() {
-    this.addToCartButton.click();
+    cy.get(this.addToCartButton).click();
   }
 
 public clickOnProductPageLink(productLocator: PRODUCTS_LOCATORS) {
-    this.getProductPageLink(productLocator).click();
+    cy.get(this.getProductPageLink(productLocator)).click();
   }
 
 public clickOnCheckoutButton() {
-    this.checkoutButton.click();
+    cy.get(this.checkoutButton).click();
   }
   
 public clickOnViewMyCartButton() {
-    this.viewMyCartButton.click();
+    cy.get(this.viewMyCartButton).click();
   }
 
 public clickOnIncreaseQuantityButton () {
-    this.increaseQuantityButton.click();
+    cy.get(this.increaseQuantityButton).click();
   }
 
 public getClicksNumber(clicksNumber: number): number {
@@ -74,7 +73,7 @@ public getAddedToCartUniqueProductsNumber(uniqueProducts: any): number {
   for(const products in uniqueProducts) {
     this.clickOnProductPageLink(uniqueProducts[products]);
     this.clickOnAddToCartButton();
-    this.viewMyCartButton.waitForElementVisible();
+    this.waitForElementVisible(this.viewMyCartButton);
     this.navigatePageBack();
     count++
     }
@@ -82,6 +81,6 @@ public getAddedToCartUniqueProductsNumber(uniqueProducts: any): number {
   }
 
 public checkForItemsNumberInCartPreview(itemsNumber: number) {
-  this.viewMyCartButton.checkElementHasText(`View my cart (${itemsNumber})\n`);
+  this.checkElementHasText(this.viewMyCartButton,`View my cart (${itemsNumber})\n`);
   }
 }

@@ -10,11 +10,12 @@ import { newPostParam } from "../support/constants";
 let response;
 const client = new Client();
 const userId = 5;
+const status404 = 404;
 
 describe("Test API", () => {
     it(`Should get information about user with Id:${userId}`, async () => {
       try {
-        response = await client.request(METHODS.GET, { url: `${baseUrl}/users/5` });
+        response = await client.request(METHODS.GET, { url: `${baseUrl}/users/${userId}` });
       } catch (error: any) {
         throw new Error(error.message);
       }
@@ -24,7 +25,7 @@ describe("Test API", () => {
 
     it(`Should create new post for user with Id:${newPostBody.userId}`, async () => {
       try {
-        response = await client.request(METHODS.POST, { url: `${baseUrl}/posts?userId=5`, headers: header, body: newPostBody });
+        response = await client.request(METHODS.POST, { url: `${baseUrl}/posts?userId=${userId}`, headers: header, body: newPostBody });
       } catch (error: any) {
         throw new Error(error.message);
       }
@@ -44,7 +45,7 @@ describe("Test API", () => {
       expect(response.data.id).to.equal(newCommentsText.id)
     });
 
-    it(`Should update ${newPostParam.id}'rd post for userId:${newPostParam.userId} with new param: ${newPostParam.time}`, async () => {
+    it(`Should update ${newPostParam.id}'rd post for userId:${newPostParam.userId} with new param: ${newPostParam.date}`, async () => {
       try {
         response = await client.request(METHODS.PATCH, { url: `${baseUrl}/posts/3`, headers: header, body: newPostParam });
       } catch (error: any) {
@@ -52,12 +53,12 @@ describe("Test API", () => {
       }
       expect(response.status).to.equal(200);
       expect(response.data.id).to.equal(newPostParam.id);
-      expect(response.data.time).to.equal(newPostParam.time);
+      expect(response.data.time).to.equal(newPostParam.date);
     });
 
     it(`Should delete user with id:${userId}`, async () => {
       try {
-        response = await client.request(METHODS.DELETE, { url: `${baseUrl}/users/5` });
+        response = await client.request(METHODS.DELETE, { url: `${baseUrl}/users/${userId}` });
       } catch (error: any) {
         throw new Error(error.message);
       }
@@ -65,7 +66,7 @@ describe("Test API", () => {
       expect(response.data).to.deep.equal({});
     });
 
-    it('Should recive response with status code: "404 Not Found" trying to get non-existing user', async () => {
+    it(`Should recive response with status ${status404} code: "Not Found" trying to get non-existing user`, async () => {
       try {
         response = await client.request(METHODS.GET, { url: `${baseUrl}/55` });
       } catch (error: any) {
@@ -74,9 +75,9 @@ describe("Test API", () => {
       }
     });
 
-    it("Should recive response with status code: '404 Not Found' trying to get non-existing post", async () => {
+    it(`Should recive response with status code: '${status404} Not Found' trying to get non-existing post`, async () => {
       try {
-        response = await client.request(METHODS.GET, { url: `${baseUrl}/posts/404` });
+        response = await client.request(METHODS.GET, { url: `${baseUrl}/posts/${status404}` });
       } catch (error: any) {
         expect(error.response.status).to.equal(404);
       }
